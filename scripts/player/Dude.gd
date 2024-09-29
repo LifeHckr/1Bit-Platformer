@@ -5,6 +5,7 @@ class_name Player extends CharacterBody2D
 @onready var ray : RayCast2D = get_node("wall_check");
 @onready var one_way_check : ShapeCast2D = get_node("up_do");
 var one_way_obj : Node2D = null;
+var web_fix_cast : ShapeCast2D = null; #rapier physics currently wont let area2d intersect characters in web export, for some reason
 
 @onready var platty : PackedScene = preload("res://scenes/objects/plat.tscn");
 @onready var d_particles : PackedScene = preload("res://scenes/small_things/death_particles.tscn");
@@ -26,6 +27,7 @@ var direction : float = 1;
 var x_direction : float = 0;
 enum state {IDLE, WALK, RUN, JUMP, WALLGRAB, WALLJUMP};
 var cur_state : state = state.IDLE;
+var dead : bool = false;
 var state_machine : Array[Player_State] = [Player_Idle.new(self), Player_Walk.new(self), Player_Run.new(self), null, Player_WallGrab.new(self), Player_WallJump.new(self)];
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -39,6 +41,8 @@ func _ready() -> void:
 		get_tree().get_root().call_deferred("add_child", spritey);
 		Global.controls1 = false;
 	Global.checkpoint_pos = self.position;
+	
+	web_fix_cast = get_node("web_fix");
 		
 
 func _physics_process(delta : float) -> void:
@@ -55,10 +59,15 @@ func _physics_process(delta : float) -> void:
 			one_way_obj.set_collision_layer_value(1, true);
 			one_way_obj.set_collision_mask_value(1, true);
 	
+	if !dead and web_fix_cast.is_colliding():
+		var testee = web_fix_cast.get_collider(0);
+		if testee is Area2D:
+			testee.body_entered.emit(self);
+	
 	move_and_slide();
 
 func _input(event):
-	if !can_platty:
+	if dead || !can_platty:
 		return;
 	if event.is_action_pressed("left") and left_platty:
 		if cur_platty != null:
@@ -114,6 +123,9 @@ func flip() -> void:
 	direction *= -1;
 
 func death() -> void:
+	if dead:
+		return;
+	dead = true;
 	var particles : CPUParticles2D = d_particles.instantiate();
 	self.velocity = Vector2.ZERO;
 	particles.position = self.position;
@@ -125,3 +137,7 @@ func death() -> void:
 func respawn() -> void:
 	self.position = Global.checkpoint_pos;
 	self.visible = true;
+	#more we fix shenanigans
+	var timer1 : SceneTreeTimer = get_tree().create_timer(.1);
+	await timer1.timeout;
+	dead = false;
