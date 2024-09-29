@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://g7vuvxus834v"]
+
+[ext_resource type="Script" path="res://scripts/thinsg/plat.gd" id="1_gwy5h"]
+[ext_resource type="Texture2D" uid="uid://cd3kl60jqntb1" path="res://sprites/spritesheet/1bit_tilesheet.png" id="1_se3dl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18kmy"]
+atlas = ExtResource("1_se3dl")
+region = Rect2(216, 889, 32, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flp0y"]
+size = Vector2(32, 12)
+
+[node name="Node2D" type="StaticBody2D"]
+script = ExtResource("1_gwy5h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_18kmy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_flp0y")

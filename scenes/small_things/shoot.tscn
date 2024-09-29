@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdnedl3jxlewx"]
+
+[ext_resource type="Script" path="res://scripts/thinsg/shoot.gd" id="1_3g2pd"]
+
+[node name="shoot" type="Marker2D"]
+position = Vector2(21, -48)
+script = ExtResource("1_3g2pd")

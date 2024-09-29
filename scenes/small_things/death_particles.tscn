@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://8lqwwwe87tb3"]
+
+[ext_resource type="Texture2D" uid="uid://cph27rueqmu87" path="res://sprites/spritesheet/death_particles.png" id="1_a8p5p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rdcei"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="death_particles" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_rdcei")
+position = Vector2(181, 292)
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+texture = ExtResource("1_a8p5p")
+emission_shape = 2
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+damping_min = 1.0
+damping_max = 1.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0

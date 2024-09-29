@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://b003ykj7vkird"]
+
+[ext_resource type="Script" path="res://scripts/game/text_scene.gd" id="1_1j477"]
+[ext_resource type="Texture2D" uid="uid://bl0jtjrp47k84" path="res://sprites/loop.png" id="1_d188t"]
+[ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="2_c86cl"]
+
+[node name="Text_Scene" type="Node2D"]
+script = ExtResource("1_1j477")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 359.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_c86cl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]Uh oh You left[/center]"
+
+[node name="ColorRect" type="ColorRect" parent="Control/RichTextLabel"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+unique_name_in_owner = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(224, 188)
+scale = Vector2(2, 2)
+texture = ExtResource("1_d188t")
