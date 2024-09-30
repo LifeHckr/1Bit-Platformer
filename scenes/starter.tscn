@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://25mfiou3l3mn"]
+[gd_scene load_steps=13 format=4 uid="uid://25mfiou3l3mn"]
 
 [ext_resource type="TileSet" uid="uid://8c6qp6a2ib0k" path="res://scenes/small_things/tiles1.tres" id="1_0jqty"]
+[ext_resource type="Script" path="res://scripts/game/start_floor.gd" id="1_bfddh"]
 [ext_resource type="PackedScene" uid="uid://chur5k8coswda" path="res://scenes/objects/dude.tscn" id="2_3qgp8"]
+[ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="2_a7wrf"]
 [ext_resource type="Script" path="res://scripts/game/Leave.gd" id="3_dwxcn"]
-[ext_resource type="Script" path="res://scripts/game/room1_transition.gd" id="4_ups7k"]
+[ext_resource type="Script" path="res://scripts/thinsg/next_stage.gd" id="5_bri3v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bicod"]
 size = Vector2(795, 20)
@@ -11,13 +13,43 @@ size = Vector2(795, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvh3k"]
 size = Vector2(37.5, 446)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyh6v"]
+size = Vector2(131.75, 433)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3korn"]
 size = Vector2(33, 325)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks8ls"]
 size = Vector2(12, 325)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qtnf"]
+size = Vector2(417, 12)
+
 [node name="Root" type="Node2D"]
+script = ExtResource("1_bfddh")
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Text" type="RichTextLabel" parent="background"]
+unique_name_in_owner = true
+top_level = true
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -162.5
+offset_right = 100.0
+offset_bottom = -93.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_a7wrf")
+bbcode_enabled = true
+fit_content = true
 
 [node name="main" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -48,7 +80,7 @@ position = Vector2(291.5, 362)
 shape = SubResource("RectangleShape2D_bicod")
 
 [node name="top" type="CollisionShape2D" parent="Walls"]
-position = Vector2(288, 12)
+position = Vector2(288, -13)
 shape = SubResource("RectangleShape2D_bicod")
 
 [node name="left" type="CollisionShape2D" parent="Walls"]
@@ -59,9 +91,13 @@ shape = SubResource("RectangleShape2D_kvh3k")
 position = Vector2(600, 210)
 shape = SubResource("RectangleShape2D_kvh3k")
 
+[node name="right2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(499.125, 79.5)
+shape = SubResource("RectangleShape2D_uyh6v")
+
 [node name="Dude" parent="." instance=ExtResource("2_3qgp8")]
 position = Vector2(64, 335)
-collision_layer = 194
+collision_layer = 192
 collision_mask = 192
 
 [node name="Leave" type="Area2D" parent="."]
@@ -77,12 +113,26 @@ shape = SubResource("RectangleShape2D_3korn")
 position = Vector2(587, 9)
 collision_layer = 128
 collision_mask = 128
-script = ExtResource("4_ups7k")
+script = ExtResource("5_bri3v")
+transition_to = "res://scenes/first_floors.tscn"
+override = Vector2(88, 335)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enter"]
 position = Vector2(-14, 169.5)
 shape = SubResource("RectangleShape2D_ks8ls")
 
+[node name="up" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("5_bri3v")
+transition_to = "res://scenes/outside_2nds.tscn"
+override = Vector2(0, 342)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="up"]
+position = Vector2(220.5, -2)
+shape = SubResource("RectangleShape2D_0qtnf")
+
 [connection signal="area_entered" from="Leave" to="Leave" method="_on_body_entered"]
 [connection signal="body_entered" from="Leave" to="Leave" method="_on_body_entered"]
 [connection signal="body_entered" from="enter" to="enter" method="_on_body_entered"]
+[connection signal="body_entered" from="up" to="up" method="_on_body_entered"]

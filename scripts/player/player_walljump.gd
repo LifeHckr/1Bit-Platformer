@@ -20,5 +20,6 @@ func _end_state() -> void:
 
 func _begin_state() -> void:
 	player.sprite.play("idle");
+	player.current_anim = "idle";
 	if player.x_direction == player.direction:
 		player.velocity.x = player.SPEED / 2 * player.x_direction;

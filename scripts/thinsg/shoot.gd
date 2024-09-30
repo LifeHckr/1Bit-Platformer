@@ -1,11 +1,12 @@
 extends Marker2D
 
 @export var cooldown : float = 200;
+@export var delay : float = 0;
 @export var dir : Vector2 = Vector2.ZERO;
 @export var speed : float = 0;
 @export var n_rotation : float = 0;
 var bullet : PackedScene = preload("res://scenes/small_things/bullet.tscn");
-var timer : float = 0;
+var timer : float = delay;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta : float) -> void:

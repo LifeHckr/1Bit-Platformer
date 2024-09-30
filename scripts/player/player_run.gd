@@ -19,3 +19,4 @@ func _end_state() -> void:
 
 func _begin_state() -> void:
 	player.sprite.play("run");
+	player.current_anim = "run";

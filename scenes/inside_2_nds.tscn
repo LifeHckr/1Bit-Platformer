@@ -1,0 +1,347 @@
+[gd_scene load_steps=23 format=4 uid="uid://d0pea7iew2yy4"]
+
+[ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="1_7jwqc"]
+[ext_resource type="Script" path="res://scripts/game/inside_2_nds.gd" id="1_rxnwe"]
+[ext_resource type="TileSet" uid="uid://8c6qp6a2ib0k" path="res://scenes/small_things/tiles1.tres" id="2_hqx11"]
+[ext_resource type="PackedScene" uid="uid://dtcs5mfqrwcxt" path="res://scenes/small_things/checkpoint.tscn" id="3_ktacc"]
+[ext_resource type="PackedScene" uid="uid://chur5k8coswda" path="res://scenes/objects/dude.tscn" id="4_dixtg"]
+[ext_resource type="PackedScene" uid="uid://bgl8mqrhvunhc" path="res://scenes/small_things/death.tscn" id="4_vqxq6"]
+[ext_resource type="Script" path="res://scripts/thinsg/next_stage.gd" id="6_jrbg4"]
+[ext_resource type="PackedScene" uid="uid://bdnedl3jxlewx" path="res://scenes/small_things/shoot.tscn" id="7_nx8d5"]
+[ext_resource type="PackedScene" uid="uid://cfvnygkym7fow" path="res://scenes/fade_away_sprite.tscn" id="9_3iyot"]
+[ext_resource type="Texture2D" uid="uid://bfjn0ybglt2tb" path="res://sprites/essence_de_tetris.png" id="10_mppn4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwuco"]
+size = Vector2(58, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vke5"]
+size = Vector2(17, 14.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7blkc"]
+size = Vector2(13.25, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64iib"]
+size = Vector2(11, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luerb"]
+size = Vector2(8, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnv77"]
+size = Vector2(45, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obhy0"]
+size = Vector2(146, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8l0b"]
+size = Vector2(278, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7snui"]
+size = Vector2(7, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukrqk"]
+size = Vector2(78, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymrk1"]
+size = Vector2(14, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox0eo"]
+size = Vector2(96, 20)
+
+[node name="inside_2nds" type="Node2D"]
+script = ExtResource("1_rxnwe")
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+offset_right = 658.0
+offset_bottom = 390.0
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="RichTextLabel" parent="background"]
+unique_name_in_owner = true
+top_level = true
+z_index = 7
+z_as_relative = false
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -151.5
+offset_right = 100.0
+offset_bottom = -82.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_7jwqc")
+bbcode_enabled = true
+text = "[center]Hmm?"
+fit_content = true
+
+[node name="main" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAEAAAABAD8AAAAAAAIAAAABAD8AAAAAAAMAAAABAD8AAAAAAAQAAAABAD8AAAAAAAUAAAAGAD0AAAAAAAYAAAAMAD8AAAAAAAcAAAAMAD8AAAAAAAgAAAABAD8AAAAAAAkAAAABAD8AAAAAAAoAAAABAD8AAAAAAAsAAAABAD8AAAAAAAwAAAABAD8AAAAAAA0AAAABAD8AAAAAAA4AAAABAD8AAAAAAA8AAAABAD8AAAAAABAAAAABAD8AAAAAABEAAAAGAD0AAAAAABIAAAAMAD8AAAAAABMAAAAMAD8AAAAAABQAAAABAD8AAAAAABUAAAABAD8AAAAAABYAAAABAD8AAAAAABcAAAABAD8AAAAAABgAAAABAD8AAAABABYAAAABAD8AAAACABYAAAABAD8AAAADABYAAAABAD8AAAAEABYAAAABAD8AAAAFABYAAAABAD8AAAAGABYAAAABAD8AAAAHABYAAAABAD8AAAAIABYAAAABAD8AAAAJABYAAAABAD8AAAAKABYAAAABAD8AAAALABYAAAABAD8AAAAMABYAAAABAD8AAAANABYAAAABAD8AAAAOABYAAAABAD8AAAAPABYAAAABAD8AAAAQABYAAAABAD8AAAARABYAAAABAD8AAAASABYAAAABAD8AAAATABYAAAABAD8AAAAUABYAAAABAD8AAAAVABYAAAABAD8AAAAWABYAAAABAD8AAAAXABYAAAABAD8AAAAYABYAAAABAD8AAAAZABYAAAABAD8AAAAaABYAAAABAD8AAAAbABYAAAABAD8AAAAcABYAAAABAD8AAAAdABYAAAABAD8AAAAeABYAAAABAD8AAAAfABYAAAABAD8AAAAgABYAAAABAD8AAAAhABYAAAABAD8AAAAiABYAAAABAD8AAAAjABYAAAACADsAAAAkABYAAAADADsAAAAlABYAAAADADsAAAAmABYAAAACADsAABAnABYAAAABAD8AAAAoAAAAAAABAD8AAAAoAAEAAAABAD8AAAAoAAIAAAABAD8AAAAnAAAAAAABAD8AAAAnAAEAAAABAD8AAAAnAAIAAAABAD8AAAAnAAMAAAABAD8AAAAoAAMAAAABAD8AAAAoAAQAAAABAD8AAAAoAAUAAAABAD8AAAAoAAYAAAABAD8AAAAnAAUAAAABAD8AAAAnAAQAAAABAD8AAAAnAAYAAAABAD8AAAAnAAcAAAABAD8AAAAnAAgAAAABAD8AAAAnAAkAAAABAD8AAAAnAAoAAAABAD8AAAAnAAsAAAABAD8AAAAnAAwAAAABAD8AAAAnAA0AAAABAD8AAAAnAA4AAAABAD8AAAAnAA8AAAABAD8AAAAnABAAAAABAD8AAAAnABEAAAABAD8AAAAnABIAAAABAD8AAAAnABMAAAABAD8AAAAnABQAAAABAD8AAAAnABUAAAABAD8AAAABAAgAAAABAD8AAAACAAgAAAABAD8AAAADAAgAAAABAD8AAAAEAAgAAAABAD8AAAAFAAgAAAABAD8AAAAGAAgAAAABAD8AAAAHAAgAAAABAD8AAAAIAAgAAAABAD8AAAAOAAgAAAABAD8AAAAOAAcAAAABAD8AAAAOAAYAAAABAD8AAAAOAAUAAAABAD8AAAAOAAQAAAABAD8AAAAOAAMAAAABAD8AAAAOAAIAAAABAD8AAAAOAAEAAAABAD8AAAAOAAAAAAABAD8AAAADAAAAAAABAD8AAAAEAAAAAAABAD8AAAAFAAAAAAABAD8AAAAGAAAAAAABAD8AAAAHAAAAAAABAD8AAAAIAAAAAAABAD8AAAAJAAAAAAABAD8AAAAKAAAAAAABAD8AAAALAAAAAAABAD8AAAAMAAAAAAABAD8AAAANAAAAAAABAD8AAAAPAAAAAAABAD8AAAAQAAAAAAABAD8AAAARAAAAAAABAD8AAAASAAAAAAABAD8AAAATAAAAAAABAD8AAAAUAAAAAAABAD8AAAAVAAAAAAABAD8AAAAWAAAAAAABAD8AAAAXAAAAAAABAD8AAAAYAAAAAAABAD8AAAAZAAAAAAABAD8AAAAaAAAAAAABAD8AAAAbAAAAAAABAD8AAAAcAAAAAAABAD8AAAAmAAAAAAABAD8AAAAlAAAAAAABAD8AAAAkAAAAAAABAD8AAAABAAoAAAANADwAAAAlAAEAAAABAD8AAAAmAAEAAAABAD8AAAAlAAIAAAABAD8AAAAmAAIAAAABAD8AAAAmAAMAAAABAD8AAAAmAAwAAAABAD8AAAAIAAkAAAAKADwAADAOAAkAAAAKADwAADAHAAkAAAAKADwAADAGAAkAAAAKADwAADAFAAkAAAAKADwAADAPAAgAAAAKADwAAFAmABEAAAABAD8AAAAmABAAAAABAD8AAAAmAA8AAAABAD8AAAAlAA8AAAABAD8AAAAlABAAAAABAD8AAAAlABEAAAABAD8AAAAmAA4AAAABAD8AAAAlAA4AAAABAD8AAAAjAAwAAAABAD8AAAAjAAsAAAABAD8AAAAkAAsAAAABAD8AAAAlAAsAAAABAD8AAAAmAAsAAAABAD8AAAAmAA0AAAABAD8AAAAlAA0AAAABAD8AAAAkAAwAAAABAD8AAAAlAAwAAAABAD8AAAAiAAwAAAABAD8AAAAiAAsAAAABAD8AAAAmAAQAAAABAD8AAAAlAAMAAAABAD8AAAAZAAYAAAABAD8AABAZAAcAAAABAD4AAAAWAAcAAAABAD8AAAAXAAcAAAABAD4AAAAYAAcAAAABAD4AAAAYAAYAAAABAD8AABAXAAYAAAABAD8AABAWAAYAAAABAD8AAAAaAAYAAAABAD8AABAaAAcAAAABAD8AABAmAAUAAAABAD8AAAAYABUAAAAMADwAAAAlABIAAAAOADwAADAmABIAAAAOADwAADANAAEAAAANADwAAFABABUAAAABAD8AAAACABUAAAABAD8AAAADABUAAAABAD8AAAAEABUAAAABAD8AAAAFABUAAAABAD8AAAAGABUAAAABAD8AAAAHABUAAAABAD8AAAAIABUAAAABAD8AAAAKABEAAAABAD8AAAAKABIAAAABAD8AAAAKABMAAAABAD8AAAAKABQAAAABAD8AAAAKABUAAAABAD8AAAAJABUAAAABAD8AAAALABEAAAABAD8AAAALABIAAAABAD8AAAALABMAAAABAD8AAAALABQAAAABAD8AAAALABUAAAABAD8AAAAMABUAAAABAD8AAAAMABQAAAABAD8AAAAMABMAAAABAD8AAAAMABIAAAABAD8AAAAMABEAAAABAD8AAAANABEAAAABAD8AAAANABIAAAABAD8AAAANABMAAAABAD8AAAANABQAAAABAD8AAAANABUAAAABAD8AAAAOABUAAAABAD8AAAAOABQAAAABAD8AAAAOABMAAAABAD8AAAAOABIAAAABAD8AAAAOABEAAAABAD8AAAAOABAAAAABAD8AAAANABAAAAABAD8AAAAMABAAAAABAD8AAAAPABAAAAABAD8AAAAPABEAAAABAD8AAAAPABIAAAABAD8AAAAPABMAAAABAD8AAAAPABQAAAABAD8AAAAPABUAAAABAD8AAAAQABEAAAABAD8AAAAQABIAAAABAD8AAAAQABMAAAABAD8AAAAQABQAAAABAD8AAAAQABUAAAABAD8AAAARABMAAAABAD8AAAARABQAAAABAD8AAAARABUAAAABAD8AAAASABQAAAABAD8AAAATABQAAAABAD8AAAATABUAAAABAD8AAAASABUAAAABAD8AAAAUABUAAAABAD8AAAANAA8AAAABAD8AAAAOAA8AAAABAD8AAAAJAAgAAAAKADwAAFACAAAAAAABAD8AAAABAAAAAAABAD8AAAAAAAAAAAABAD8AAAAAAP//AAABAD8AAAABAP//AAABAD8AAAACAP//AAABAD8AAAADAP//AAABAD8AAAAEAP//AAABAD8AAAAFAP//AAABAD8AAAAGAP//AAABAD8AAAAHAP//AAABAD8AAAAIAP//AAABAD8AAAAJAP//AAABAD8AAAAKAP//AAABAD8AAAALAP//AAABAD8AAAAMAP//AAABAD8AAAANAP//AAABAD8AAAAOAP//AAABAD8AAAAPAP//AAABAD8AAAAQAP//AAABAD8AAAARAP//AAABAD8AAAASAP//AAABAD8AAAAXAP//AAABAD8AAAAYAP//AAABAD8AAAAZAP//AAABAD8AAAAaAP//AAABAD8AAAAbAP//AAABAD8AAAAcAP//AAABAD8AAAAWAP//AAABAD8AAAAVAP//AAABAD8AAAAUAP//AAABAD8AAAATAP//AAABAD8AAAAkAP//AAABAD8AAAAlAP//AAABAD8AAAAmAP//AAABAD8AAAAnAP//AAABAD8AAAAoAP//AAABAD8AAAAAAP7/AAABAD8AAAAAAP3/AAABAD8AAAAAAPz/AAABAD8AAAAAAPv/AAABAD8AAAAAAPr/AAABAD8AAAAAAPn/AAABAD8AAAAAAPj/AAABAD8AAAAAAPf/AAABAD8AAAAAAPb/AAABAD8AAAAAAPX/AAABAD8AAAD///X/AAABAD8AAAD///T/AAABAD8AAAD///P/AAABAD8AAAD///L/AAABAD8AAAAAAPT/AAABAD8AAAAAAPP/AAABAD8AAAAAAPL/AAABAD8AAAAAAPH/AAABAD8A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")
+tile_set = ExtResource("2_hqx11")
+
+[node name="top" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAXAAcAAAAMADsAAAAZAAcAAAAMADsAAAAkAA0AAAANADwAADA=")
+tile_set = ExtResource("2_hqx11")
+
+[node name="camera" type="Camera2D" parent="."]
+offset = Vector2(320, -180)
+
+[node name="death" parent="." instance=ExtResource("4_vqxq6")]
+position = Vector2(113, 87)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
+position = Vector2(-1, 65)
+shape = SubResource("RectangleShape2D_gwuco")
+
+[node name="a_lil_mean" type="CollisionShape2D" parent="death"]
+position = Vector2(118.5, 65.75)
+shape = SubResource("RectangleShape2D_2vke5")
+
+[node name="a_lil_mean2" type="CollisionShape2D" parent="death"]
+position = Vector2(135.75, 49)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean4" type="CollisionShape2D" parent="death"]
+position = Vector2(-88.25, -287)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean6" type="CollisionShape2D" parent="death"]
+position = Vector2(-26, -383)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean7" type="CollisionShape2D" parent="death"]
+position = Vector2(24, -367)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean8" type="CollisionShape2D" parent="death"]
+position = Vector2(24, -351)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean9" type="CollisionShape2D" parent="death"]
+position = Vector2(39, -366)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean19" type="CollisionShape2D" parent="death"]
+position = Vector2(39, -304)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean20" type="CollisionShape2D" parent="death"]
+position = Vector2(71, -288)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_64iib")
+
+[node name="a_lil_mean10" type="CollisionShape2D" parent="death"]
+position = Vector2(55, -366)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean11" type="CollisionShape2D" parent="death"]
+position = Vector2(119, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean12" type="CollisionShape2D" parent="death"]
+position = Vector2(135, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean13" type="CollisionShape2D" parent="death"]
+position = Vector2(199, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean14" type="CollisionShape2D" parent="death"]
+position = Vector2(215, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean15" type="CollisionShape2D" parent="death"]
+position = Vector2(279, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean16" type="CollisionShape2D" parent="death"]
+position = Vector2(295, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean17" type="CollisionShape2D" parent="death"]
+position = Vector2(359, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean18" type="CollisionShape2D" parent="death"]
+position = Vector2(375, -367)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean5" type="CollisionShape2D" parent="death"]
+position = Vector2(-87, -384)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="a_lil_mean3" type="CollisionShape2D" parent="death"]
+position = Vector2(40, 48)
+shape = SubResource("RectangleShape2D_7blkc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="death"]
+position = Vector2(-87, -335)
+shape = SubResource("RectangleShape2D_luerb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="death"]
+position = Vector2(-11, -335)
+shape = SubResource("RectangleShape2D_luerb")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="death"]
+position = Vector2(487.5, -365)
+shape = SubResource("RectangleShape2D_lnv77")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="death"]
+position = Vector2(570, -303)
+shape = SubResource("RectangleShape2D_obhy0")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="death"]
+position = Vector2(243, -241.5)
+shape = SubResource("RectangleShape2D_v8l0b")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="death"]
+position = Vector2(99.5, -241.5)
+shape = SubResource("RectangleShape2D_7snui")
+
+[node name="one_ways1" type="StaticBody2D" parent="." groups=["one_way"]]
+position = Vector2(521, -5)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="one_ways1"]
+position = Vector2(74, 364)
+shape = SubResource("RectangleShape2D_ukrqk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="one_ways1"]
+position = Vector2(-477, -52)
+shape = SubResource("RectangleShape2D_ukrqk")
+
+[node name="Dude" parent="." instance=ExtResource("4_dixtg")]
+position = Vector2(31, 305)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="checkpoint" parent="." instance=ExtResource("3_ktacc")]
+position = Vector2(396, 343)
+scale = Vector2(3.91304, 1)
+
+[node name="checkpoint2" parent="." instance=ExtResource("3_ktacc")]
+position = Vector2(48, -71)
+scale = Vector2(3.91304, 1)
+
+[node name="checkpoint4" parent="." instance=ExtResource("3_ktacc")]
+position = Vector2(192, -128)
+scale = Vector2(-2.16083, -1.09682)
+
+[node name="outlet_1" type="Area2D" parent="."]
+script = ExtResource("6_jrbg4")
+transition_to = "res://scenes/outside_2nds.tscn"
+override = Vector2(368, -447)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outlet_1"]
+position = Vector2(8, 305)
+shape = SubResource("RectangleShape2D_ymrk1")
+
+[node name="outlet_2" type="Area2D" parent="."]
+position = Vector2(1, -191)
+script = ExtResource("6_jrbg4")
+transition_to = "res://scenes/outside_2nds.tscn"
+override = Vector2(424, -629)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outlet_2"]
+position = Vector2(8, 305)
+shape = SubResource("RectangleShape2D_ymrk1")
+
+[node name="down_trans" type="Area2D" parent="."]
+script = ExtResource("6_jrbg4")
+transition_to = "res://scenes/first_floors.tscn"
+override = Vector2(593, -702)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="down_trans"]
+position = Vector2(591, 380)
+shape = SubResource("RectangleShape2D_ox0eo")
+
+[node name="shoot" parent="." instance=ExtResource("7_nx8d5")]
+position = Vector2(20, 168)
+cooldown = 0.75
+delay = 0.75
+dir = Vector2(1, 0)
+speed = 6.0
+
+[node name="shoot2" parent="." instance=ExtResource("7_nx8d5")]
+position = Vector2(588, 216)
+cooldown = 1.25
+dir = Vector2(-1, 0)
+speed = 6.0
+n_rotation = 180.0
+
+[node name="shoot3" parent="." instance=ExtResource("7_nx8d5")]
+position = Vector2(216, 20)
+cooldown = 1.5
+dir = Vector2(0, 1)
+speed = 3.0
+n_rotation = 90.0
+
+[node name="top_shoot3" parent="." instance=ExtResource("7_nx8d5")]
+position = Vector2(619, -312)
+cooldown = 1.0
+delay = -3.0
+dir = Vector2(-1, 0)
+speed = 6.0
+n_rotation = 180.0
+
+[node name="top_shoot4" parent="." instance=ExtResource("7_nx8d5")]
+process_mode = 4
+position = Vector2(28, 116)
+cooldown = 0.2
+delay = -2.0
+dir = Vector2(-1, 0)
+speed = 6.0
+n_rotation = 180.0
+
+[node name="top_shoot5" parent="." instance=ExtResource("7_nx8d5")]
+process_mode = 4
+position = Vector2(108, -248)
+cooldown = 0.2
+delay = -1.0
+dir = Vector2(-1, 0)
+speed = 6.0
+n_rotation = 180.0
+
+[node name="top_shoot6" parent="." instance=ExtResource("7_nx8d5")]
+process_mode = 4
+position = Vector2(108, -232)
+cooldown = 0.2
+dir = Vector2(-1, 0)
+speed = 6.0
+n_rotation = 180.0
+
+[node name="top_shoot7" parent="." instance=ExtResource("7_nx8d5")]
+process_mode = 4
+position = Vector2(108, -216)
+cooldown = 0.2
+delay = -4.0
+dir = Vector2(-1, 0)
+speed = 6.0
+n_rotation = 180.0
+
+[node name="essence_de_tetris" parent="." instance=ExtResource("9_3iyot")]
+position = Vector2(120, -152)
+texture = ExtResource("10_mppn4")
+flag = "can_platty"
+
+[connection signal="body_entered" from="outlet_1" to="outlet_1" method="_on_body_entered"]
+[connection signal="body_entered" from="outlet_2" to="outlet_2" method="_on_body_entered"]
+[connection signal="body_entered" from="down_trans" to="down_trans" method="_on_body_entered"]
+[connection signal="body_entered" from="essence_de_tetris" to="." method="_on_essence_de_tetris_body_entered"]

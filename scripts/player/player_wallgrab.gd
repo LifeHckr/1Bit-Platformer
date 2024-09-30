@@ -21,6 +21,7 @@ func _end_state() -> void:
 func _begin_state() -> void:
 	player.velocity.y *= .75;
 	player.sprite.play("wall_grab");
+	player.current_anim = "wall_grab";
 	player.stored_velo = player.velocity.x;
 	stick = true;
 	if timer != null:
@@ -28,7 +29,6 @@ func _begin_state() -> void:
 	timer = player.get_tree().create_timer(1.0);
 	timer.timeout.connect(unstick);
 	if not player.ray.is_colliding():
-		print_debug("Token")
 		player.flip();
 
 

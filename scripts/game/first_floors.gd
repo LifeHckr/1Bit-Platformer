@@ -5,7 +5,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	player.position = Global.transition_coords;
+	Global.checkpoint_pos = player.position;
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

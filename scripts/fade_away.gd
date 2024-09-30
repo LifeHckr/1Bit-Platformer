@@ -2,10 +2,14 @@ extends Area2D
 
 @onready var sprite : Sprite2D = get_node("%Node2D");
 @export var texture : CompressedTexture2D = null;
+@export var flag : String = "";
+
 var timer : float = 0;
-var input_based : bool = false;
+@export var input_based : bool = false;
 
 func _ready() -> void:
+	if Global.get(flag):
+		self.queue_free();
 	sprite.texture = texture;
 
 func _process(delta):
@@ -21,7 +25,11 @@ func fade() -> void:
 	tween.tween_property(self, "modulate", Color(0, 0, 0, 0), .3);
 	tween.tween_callback(self.queue_free);
 	tween.play();
+	Global.set(flag, true);
+		
+		
 
 func _on_body_entered(_body : Node2D):
+	self.set_collision_layer_value(1, false);
 	if !input_based:
 		fade();

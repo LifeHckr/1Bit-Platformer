@@ -22,6 +22,7 @@ func _end_state() -> void:
 
 func _begin_state() -> void:
 	player.sprite.play("walk");
+	player.current_anim = "walk";
 	
 func checkTurn() -> void:
 	if player.x_direction != 0 && player.x_direction != player.direction:

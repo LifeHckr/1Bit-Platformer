@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://chur5k8coswda"]
+[gd_scene load_steps=19 format=3 uid="uid://chur5k8coswda"]
 
 [ext_resource type="Script" path="res://scripts/player/Dude.gd" id="1_luca3"]
 [ext_resource type="Texture2D" uid="uid://cd3kl60jqntb1" path="res://sprites/spritesheet/1bit_tilesheet.png" id="2_68s4a"]
@@ -10,6 +10,10 @@ region = Rect2(0, 864, 28, 20)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvhod"]
 atlas = ExtResource("2_68s4a")
 region = Rect2(0, 884, 28, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frkty"]
+atlas = ExtResource("2_68s4a")
+region = Rect2(56, 884, 28, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qol12"]
 atlas = ExtResource("2_68s4a")
@@ -54,6 +58,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_frkty")
+}],
+"loop": true,
+"name": &"platty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qol12")
 }, {
 "duration": 1.0,
@@ -95,8 +107,80 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ahklw"]
-states/Start/position = Vector2(512, 91)
+[sub_resource type="Animation" id="Animation_iv8wp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("duber:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("duber:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7do3y"]
+resource_name = "p1"
+length = 0.16667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("duber:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"platty"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("duber:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_cur_anim"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg71n"]
+_data = {
+"RESET": SubResource("Animation_iv8wp"),
+"p1": SubResource("Animation_7do3y")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhvyd"]
 size = Vector2(18, 18)
@@ -109,6 +193,8 @@ z_index = 1
 scale = Vector2(-1, 1)
 collision_layer = 131
 collision_mask = 3
+collision_priority = 3.0
+safe_margin = 1.0
 script = ExtResource("1_luca3")
 
 [node name="duber" type="AnimatedSprite2D" parent="."]
@@ -116,13 +202,11 @@ sprite_frames = SubResource("SpriteFrames_jme6i")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="anims" type="AnimationPlayer" parent="."]
-root_node = NodePath("../duber")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../duber")
-tree_root = SubResource("AnimationNodeStateMachine_ahklw")
-anim_player = NodePath("../anims")
+[node name="anims" type="AnimationPlayer" parent="duber"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_cg71n")
+}
 
 [node name="wall_check" type="RayCast2D" parent="."]
 position = Vector2(10, -10)
@@ -137,7 +221,7 @@ shape = SubResource("RectangleShape2D_fhvyd")
 visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_7jgjc")
-target_position = Vector2(0, -5)
+target_position = Vector2(-1, -5)
 max_results = 5
 collision_mask = 4
 

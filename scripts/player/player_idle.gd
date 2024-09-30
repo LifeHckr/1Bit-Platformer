@@ -20,3 +20,4 @@ func _end_state() -> void:
 
 func _begin_state() -> void:
 	player.sprite.play("idle");
+	player.current_anim = "idle";
