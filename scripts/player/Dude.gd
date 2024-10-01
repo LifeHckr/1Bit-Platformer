@@ -23,7 +23,7 @@ var flagSound : AudioStream = preload("res://sounds/snappy.wav"); #done
 var cur_platty : StaticBody2D;
 
 const SPEED : float = 300.0
-const ACCEL : float = 75.0;
+const ACCEL : float = 50.0;
 const JUMP_VELOCITY : float = -400.0
 var stored_velo : float = 0;
 var canJump : bool = Global.canJump;
