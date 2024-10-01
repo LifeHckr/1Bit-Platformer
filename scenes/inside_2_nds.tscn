@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d0pea7iew2yy4"]
+[gd_scene load_steps=24 format=4 uid="uid://d0pea7iew2yy4"]
 
 [ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="1_7jwqc"]
 [ext_resource type="Script" path="res://scripts/game/inside_2_nds.gd" id="1_rxnwe"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bdnedl3jxlewx" path="res://scenes/small_things/shoot.tscn" id="7_nx8d5"]
 [ext_resource type="PackedScene" uid="uid://cfvnygkym7fow" path="res://scenes/fade_away_sprite.tscn" id="9_3iyot"]
 [ext_resource type="Texture2D" uid="uid://bfjn0ybglt2tb" path="res://sprites/essence_de_tetris.png" id="10_mppn4"]
+[ext_resource type="AudioStream" uid="uid://43he2m5jicya" path="res://sounds/610763__josefpres__8-bit-game-loop-002-simple-mix-1-long-120-bpm.wav" id="11_2bvor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwuco"]
 size = Vector2(58, 16)
@@ -93,6 +94,7 @@ offset = Vector2(320, -180)
 
 [node name="death" parent="." instance=ExtResource("4_vqxq6")]
 position = Vector2(113, 87)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
 position = Vector2(-1, 65)
@@ -340,6 +342,10 @@ n_rotation = 180.0
 position = Vector2(120, -152)
 texture = ExtResource("10_mppn4")
 flag = "can_platty"
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2bvor")
+autoplay = true
 
 [connection signal="body_entered" from="outlet_1" to="outlet_1" method="_on_body_entered"]
 [connection signal="body_entered" from="outlet_2" to="outlet_2" method="_on_body_entered"]

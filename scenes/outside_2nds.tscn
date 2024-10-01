@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bk72v6o0fyqfd"]
+[gd_scene load_steps=33 format=4 uid="uid://bk72v6o0fyqfd"]
 
 [ext_resource type="Script" path="res://scripts/game/outside_2_nds.gd" id="1_mpoxb"]
 [ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="2_4hvba"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bgl8mqrhvunhc" path="res://scenes/small_things/death.tscn" id="6_nabt5"]
 [ext_resource type="Script" path="res://scripts/game/Leave.gd" id="8_qhais"]
 [ext_resource type="Texture2D" uid="uid://cd3kl60jqntb1" path="res://sprites/spritesheet/1bit_tilesheet.png" id="10_ffx58"]
+[ext_resource type="AudioStream" uid="uid://cdu674k5tqjxj" path="res://sounds/653718__josefpres__8-bit-game-loop-003-simple-mix-3-long-120-bpm.wav" id="11_6y1no"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xitio"]
 size = Vector2(142, 6)
@@ -82,6 +83,33 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="Animation" id="Animation_imgbk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
 [sub_resource type="Animation" id="Animation_dhqyc"]
 resource_name = "dance"
 length = 0.700002
@@ -110,33 +138,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_imgbk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pkk5c"]
@@ -202,6 +203,7 @@ position = Vector2(415, 342)
 
 [node name="death" parent="." instance=ExtResource("6_nabt5")]
 position = Vector2(479.453, 393.651)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
 position = Vector2(-119.453, -933.651)
@@ -322,6 +324,10 @@ autoplay = "dance"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="the_name_is_dance/Area2D"]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dctk6")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_6y1no")
+autoplay = true
 
 [connection signal="body_entered" from="inlet_1" to="inlet_1" method="_on_body_entered"]
 [connection signal="body_entered" from="inlet_2" to="inlet_2" method="_on_body_entered"]

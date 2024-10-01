@@ -2,12 +2,15 @@ extends Node2D
 
 @onready var background : ParallaxBackground = get_node("%ParallaxBackground")
 @onready var text : RichTextLabel = get_node("%RichTextLabel")
+@onready var audio : AudioStreamPlayer = get_node("audio");
 var speed : float = 50;
 var direction : Vector2 = Vector2(0,1);
 var timer : int = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	text.text = "[center]" + Global.text_scene_text + "[/center]";
+	if Global.finished_questionmark:
+		audio.play();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

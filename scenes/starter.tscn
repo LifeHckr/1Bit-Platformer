@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://25mfiou3l3mn"]
+[gd_scene load_steps=14 format=4 uid="uid://25mfiou3l3mn"]
 
 [ext_resource type="TileSet" uid="uid://8c6qp6a2ib0k" path="res://scenes/small_things/tiles1.tres" id="1_0jqty"]
 [ext_resource type="Script" path="res://scripts/game/start_floor.gd" id="1_bfddh"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="2_a7wrf"]
 [ext_resource type="Script" path="res://scripts/game/Leave.gd" id="3_dwxcn"]
 [ext_resource type="Script" path="res://scripts/thinsg/next_stage.gd" id="5_bri3v"]
+[ext_resource type="AudioStream" uid="uid://cdu674k5tqjxj" path="res://sounds/653718__josefpres__8-bit-game-loop-003-simple-mix-3-long-120-bpm.wav" id="7_ng55g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bicod"]
 size = Vector2(795, 20)
@@ -131,6 +132,10 @@ override = Vector2(0, 342)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up"]
 position = Vector2(220.5, -2)
 shape = SubResource("RectangleShape2D_0qtnf")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ng55g")
+autoplay = true
 
 [connection signal="area_entered" from="Leave" to="Leave" method="_on_body_entered"]
 [connection signal="body_entered" from="Leave" to="Leave" method="_on_body_entered"]

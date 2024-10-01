@@ -4,6 +4,7 @@ class_name Player extends CharacterBody2D
 @onready var sprite : AnimatedSprite2D = get_node("duber");
 @onready var ray : RayCast2D = get_node("wall_check");
 @onready var one_way_check : ShapeCast2D = get_node("up_do");
+@onready var audio : AudioStreamPlayer = get_node("audio");
 var one_way_obj : Node2D = null;
 var web_fix_cast : ShapeCast2D = null; #rapier physics currently wont let area2d intersect characters in web export, for some reason
 var current_anim : String = "idle";
@@ -11,10 +12,18 @@ var current_anim : String = "idle";
 @onready var platty : PackedScene = preload("res://scenes/objects/plat.tscn");
 @onready var d_particles : PackedScene = preload("res://scenes/small_things/death_particles.tscn");
 
+var jumpSound : AudioStream = preload("res://sounds/jump.wav"); #done
+var plattySound : AudioStream = preload("res://sounds/platty.wav"); #done
+var hurtSound : AudioStream = preload("res://sounds/hurt.wav"); #done
+var wallJumpSound : AudioStream = preload("res://sounds/wall_jump.wav");#done
+var pickupSound : AudioStream = preload("res://sounds/pickup.wav");
+var flagSound : AudioStream = preload("res://sounds/snappy.wav"); #done
+
+
 var cur_platty : StaticBody2D;
 
 const SPEED : float = 300.0
-const ACCEL : float = 50.0;
+const ACCEL : float = 75.0;
 const JUMP_VELOCITY : float = -400.0
 var stored_velo : float = 0;
 var canJump : bool = Global.canJump;
@@ -82,6 +91,8 @@ func _input(event):
 		if cur_platty != null:
 			cur_platty.phase();
 		anims.play("p1");
+		audio.stream = plattySound;
+		audio.play();
 		platty_timer = 0;
 		cur_platty = platty.instantiate();
 		cur_platty.rotation = deg_to_rad(90);
@@ -93,6 +104,8 @@ func _input(event):
 		if cur_platty != null:
 			cur_platty.phase();
 		anims.play("p1");
+		audio.stream = plattySound;
+		audio.play();
 		platty_timer = 0;
 		cur_platty = platty.instantiate();
 		cur_platty.rotation = deg_to_rad(270);
@@ -146,6 +159,8 @@ func death() -> void:
 	if dead:
 		return;
 	dead = true;
+	audio.stream = hurtSound;
+	audio.play();
 	var particles : CPUParticles2D = d_particles.instantiate();
 	self.velocity = Vector2.ZERO;
 	particles.position = self.position;

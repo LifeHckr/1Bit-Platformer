@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b003ykj7vkird"]
+[gd_scene load_steps=5 format=3 uid="uid://b003ykj7vkird"]
 
 [ext_resource type="Script" path="res://scripts/game/text_scene.gd" id="1_1j477"]
 [ext_resource type="Texture2D" uid="uid://bl0jtjrp47k84" path="res://sprites/loop.png" id="1_d188t"]
 [ext_resource type="FontFile" uid="uid://bawutxl10jvj7" path="res://font/Minecraft.ttf" id="2_c86cl"]
+[ext_resource type="AudioStream" uid="uid://pw7gr1c8wy56" path="res://sounds/198896__bone666138__8-bit-circus-music.wav" id="4_kli46"]
 
 [node name="Text_Scene" type="Node2D"]
 script = ExtResource("1_1j477")
@@ -52,3 +53,6 @@ motion_mirroring = Vector2(512, 512)
 position = Vector2(224, 188)
 scale = Vector2(2, 2)
 texture = ExtResource("1_d188t")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kli46")

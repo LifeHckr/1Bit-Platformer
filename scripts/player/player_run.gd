@@ -6,6 +6,8 @@ func _phys(_delta : float) -> void:
 
 	if Input.is_action_just_pressed("ui_accept") and player.is_on_floor() and player.canJump:
 		player.velocity.y = player.JUMP_VELOCITY
+		player.audio.stream = player.jumpSound;
+		player.audio.play();
 	
 	if player.is_on_wall_only() and player.can_wall_jump:
 		player._change_state(player.state.WALLGRAB);

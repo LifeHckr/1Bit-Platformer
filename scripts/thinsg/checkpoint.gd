@@ -3,6 +3,8 @@ extends Area2D
 
 func _on_body_entered(body : Node2D):
 	if body.is_in_group("player"):
+		body.audio.stream = body.flagSound;
+		body.audio.play();
 		Global.checkpoint_pos = body.position;
 
 

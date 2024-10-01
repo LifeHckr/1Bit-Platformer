@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://djc2xhp1eoxrq"]
+[gd_scene load_steps=38 format=4 uid="uid://djc2xhp1eoxrq"]
 
 [ext_resource type="TileSet" uid="uid://8c6qp6a2ib0k" path="res://scenes/small_things/tiles1.tres" id="1_q5iro"]
 [ext_resource type="Script" path="res://scripts/game/first_floors.gd" id="1_xurlr"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bdnedl3jxlewx" path="res://scenes/small_things/shoot.tscn" id="8_1148o"]
 [ext_resource type="PackedScene" uid="uid://bgl8mqrhvunhc" path="res://scenes/small_things/death.tscn" id="9_iw6wg"]
 [ext_resource type="Script" path="res://scripts/thinsg/next_stage.gd" id="11_bs534"]
+[ext_resource type="AudioStream" uid="uid://43he2m5jicya" path="res://sounds/610763__josefpres__8-bit-game-loop-002-simple-mix-1-long-120-bpm.wav" id="12_c078n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7h30"]
 size = Vector2(74, 370)
@@ -333,6 +334,10 @@ override = Vector2(64, 335)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_stage"]
 position = Vector2(347, -781)
 shape = SubResource("RectangleShape2D_h74fd")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_c078n")
+autoplay = true
 
 [connection signal="body_entered" from="jump" to="." method="_jump_obtained"]
 [connection signal="body_entered" from="glue" to="." method="_glue_obtained"]

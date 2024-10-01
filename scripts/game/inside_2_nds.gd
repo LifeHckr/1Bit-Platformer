@@ -23,4 +23,6 @@ func _on_essence_de_tetris_body_entered(_body: Node2D) -> void:
 		get_tree().get_root().call_deferred("add_child", spritey);
 		
 	player.can_platty = true;
+	player.audio.stream = player.pickupSound;
+	player.audio.play();
 	text.text = "[center]" + "Unlimited power (almost)."

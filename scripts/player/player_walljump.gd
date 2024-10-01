@@ -23,3 +23,8 @@ func _begin_state() -> void:
 	player.current_anim = "idle";
 	if player.x_direction == player.direction:
 		player.velocity.x = player.SPEED / 2 * player.x_direction;
+		player.audio.stream = player.wallJumpSound;
+		player.audio.play();
+	else:
+		player.audio.stream = player.jumpSound;
+		player.audio.play();

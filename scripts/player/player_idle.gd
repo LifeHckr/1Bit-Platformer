@@ -5,6 +5,8 @@ func _phys(_delta : float) -> void:
 	player.velocity.y += player.gravity * _delta
 
 	if Input.is_action_just_pressed("ui_accept") and player.is_on_floor() and player.canJump:
+		player.audio.stream = player.jumpSound;
+		player.audio.play();
 		player.velocity.y = player.JUMP_VELOCITY
 
 	var direction : float = Input.get_axis("ui_left", "ui_right");
