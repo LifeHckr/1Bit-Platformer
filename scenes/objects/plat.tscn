@@ -22,6 +22,7 @@ texture = SubResource("AtlasTexture_18kmy")
 shape = SubResource("RectangleShape2D_flp0y")
 
 [node name="web_fix" type="ShapeCast2D" parent="."]
+process_mode = 4
 shape = SubResource("RectangleShape2D_flp0y")
 target_position = Vector2(0, 0)
 margin = 1.0
